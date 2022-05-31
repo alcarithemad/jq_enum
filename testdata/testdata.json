@@ -1,0 +1,34 @@
+{
+  "x/y/z/A1": {
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "class": "class A",
+    "properties": {
+      "value_a": "val a",
+      "value_b": 1
+    }
+  },
+  "x/y/z/A2": {
+    "tags": [
+      "tag2"
+    ],
+    "class": "class C",
+    "properties": {
+      "value_a": "val a2",
+      "value_b": 2
+    }
+  },
+    "x/y/Var3": {
+    "tags": [
+      "tag2",
+      "tag4"
+    ],
+    "class": "class B",
+    "properties": {
+      "value_a": "val 3",
+      "value_b": 3
+    }
+  }
+}

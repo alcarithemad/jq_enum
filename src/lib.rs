@@ -207,7 +207,7 @@ impl Parse for JsonEnumInput {
 }
 
 #[proc_macro]
-pub fn json_enum(input: TokenStream) -> TokenStream {
+pub fn jq_enum(input: TokenStream) -> TokenStream {
     let mut enum_spec: JsonEnumInput = parse_macro_input!(input as JsonEnumInput);
 
     let data = std::fs::read_to_string(&enum_spec.filename).unwrap();

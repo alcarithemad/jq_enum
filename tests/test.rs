@@ -1,4 +1,4 @@
-use json_enum::json_enum;
+use jq_enum::jq_enum;
 
 use serde::{Deserialize, Serialize};
 
@@ -8,7 +8,7 @@ pub struct Properties {
     value_b: usize,
 }
 
-json_enum! {
+jq_enum! {
     #[derive(Deserialize)]
     TestEnum1,
     "testdata/testdata.json",

@@ -4,6 +4,7 @@ use proc_macro2::Span;
 use quote::{format_ident, ToTokens};
 use std::collections::HashMap;
 use std::iter;
+use std::path::PathBuf;
 use syn::parse::{Parse, ParseStream};
 use syn::{parse_macro_input, parse_quote, Attribute, ItemFn, Path, Type, Variant};
 use syn::{Ident, LitStr, Token};
@@ -210,7 +211,11 @@ impl Parse for JsonEnumInput {
 pub fn jq_enum(input: TokenStream) -> TokenStream {
     let mut enum_spec: JsonEnumInput = parse_macro_input!(input as JsonEnumInput);
 
-    let data = std::fs::read_to_string(&enum_spec.filename).unwrap();
+    let root = std::env::var("CARGO_MANIFEST_DIR").unwrap();
+    let mut file_path = PathBuf::from(root);
+    file_path.push(&enum_spec.filename);
+
+    let data = std::fs::read_to_string(&file_path).unwrap();
     let variants = enum_spec.get_names(&data).unwrap();
     let paths = enum_spec.get_paths(&data).unwrap();
     let expanded_variants = enum_spec.expanded_variants(&data).unwrap();
@@ -239,9 +244,6 @@ pub fn jq_enum(input: TokenStream) -> TokenStream {
             )
         })
         .collect::<Vec<_>>();
-    let file_path = std::path::PathBuf::from(enum_spec.filename)
-        .canonicalize()
-        .unwrap();
     let file_ref = file_path.to_str().unwrap();
     let attrs = &enum_spec.attrs;
     quote::quote!(

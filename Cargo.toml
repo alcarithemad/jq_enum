@@ -1,7 +1,7 @@
 [package]
 name = "jq_enum"
 version = "0.1.0"
-authors = ["Colin Valliant <alcarithemad@gmail.com>"]
+authors = ["C Valliant <alcarithemad@gmail.com>"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
